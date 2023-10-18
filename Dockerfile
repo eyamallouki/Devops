@@ -1,3 +1,5 @@
-From openjdk:8
-copy ./target/SkiStationProject-0.0.1-SNAPSHOT.jar SkiStationProject-0.0.1-SNAPSHOT.jar
-CMD ["java","-jar","SkiStationProject-0.0.1-SNAPSHOT.jar"]
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ADD target/SkiStationProject-0.0.1-SNAPSHOT.jar app.jar
+ENV JAVA_OPTS=""
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
